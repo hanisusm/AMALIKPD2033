@@ -1,0 +1,75 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.amalikpd2023;
+
+/**
+ *
+ * @author Dam
+ */
+import static java.time.Clock.system;
+import static java.time.InstantSource.system;
+import java.util.Scanner;
+public class AMALIKPD2023 {
+
+    public static String dapatkanNama (Scanner input) {
+        System.out.println("Masukkan nama pemandu: ");
+        return input.nextLine();
+    }
+    //fungsi untuk mendapatkan jarak perjalanan dengan semakan julat
+    public static int dapatkanJarakPerjalanan(Scanner input){
+    int jarak;
+    while(true){
+        try{
+            System.out.print("Masukkan jumlah jarak perjalanan (KM)");
+            jarak = Integer.parseInt(input.nextLine());
+            if(jarak>=0 && jarak <=10000){
+                break; //keluar jika input sah
+            }else{
+                System.out.println("Jarak tidak boleh melebihi 10000km atau kurang dari 0km");
+            }
+
+            
+        }catch (NumberFormatException e){
+            System.out.println("Sila masukkan nombor yang sah");
+        }
+    }
+    return jarak;
+    }
+
+
+//FUNGSI UNTUK MENGIRA ELAUN PERJALAN
+public static double kiraElaun(int jarak,double KADARSeKm){
+
+    return jarak*KADARSeKm;
+}
+public static void paparRumusan (String nama,int jarak,double jumlahElaun){
+System.out.println("\nMasukkan nama pemandu:");
+System.out.println(nama);
+System.out.println("Masukkan jumlah perjalanan (KM): ");
+System.out.println(jarak);
+System.out.println("\nRumusan Elaun perjalanan bagi" +nama);
+System.out.println("Jumlah jarak perjalanan:" +jarak+"km");
+System.out.printf("JUMLAH ELAUN ADALAH:RM%.2f\n",jumlahElaun);
+}
+
+//FUNGSI UTAMA
+
+public static void main(String[]args){
+final double KADAR_SE_KM=1.20; //ELAUN PER KM
+Scanner input = new Scanner(System.in);
+
+//input nama dan dan karak perjalanan
+String nama = dapatkanNama(input);
+int jarak = dapatkanJarakPerjalanan(input);
+
+//kira elaun
+double jumlahElaun = kiraElaun(jarak,KADAR_SE_KM);
+
+//paparkan rumusan elaun
+paparRumusan(nama,jarak,jumlahElaun);
+
+input.close();
+}
+}
